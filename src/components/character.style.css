@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+}
+
+img {
+    width: 100%;
+}
+
+div {
+display: table-row;
+
+}
+
+.bart-class {
+    background: darkorange;
+}
+
+.liza-class {
+    background: green;
+}
+
+.maggie-class {
+    background: deeppink;
+}
+
+.homer-class {
+    background: cornflowerblue;
+}
+
+.marge-class {
+    background: mediumpurple;
+}
