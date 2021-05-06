@@ -1,0 +1,25 @@
+
+.wrap-user {
+display: flex;
+}
+
+
+.user-box {
+border: 1px solid black;
+    width: fit-content;
+    margin: 10px;
+    padding: 10px;
+    background: cadetblue;
+    border-radius: 10px;
+}
+
+
+.find-user-box {
+border: 1px solid red;
+    width: fit-content;
+    margin: 10px;
+    padding: 10px;
+    background: lightcoral;
+    border-radius: 10px;
+}
+

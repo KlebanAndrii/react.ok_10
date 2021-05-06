@@ -1,0 +1,33 @@
+
+.wrap {
+    display: flex;
+}
+
+
+.posts-box {
+    margin: 20px;
+    width: 120px;
+    border: 1px solid black;
+    padding: 10px;
+    background: cadetblue;
+    border-radius: 10px;
+
+}
+
+
+.find-post-box {
+    margin: 20px;
+    width: fit-content;
+    border: 1px solid red;
+    padding: 10px;
+    background: lightcoral;
+    border-radius: 10px;
+}
+
+button {
+    margin: 5px;
+   text-transform: capitalize;
+    background: navajowhite;
+    border-radius: 5px;
+
+}
