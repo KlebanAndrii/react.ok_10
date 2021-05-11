@@ -6,6 +6,8 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import UserDetailsComponent from "./components/user-details/UserDetailsComponent";
+import PostsComponent from "./components/posts/PostsComponent";
 
 
 function App() {
@@ -15,12 +17,24 @@ function App() {
                 <div><Link to={'users'}>to users</Link></div>
                 <div><Link to={'posts'}>to posts</Link></div>
                 <Switch>
-                    <Route path={'/users'} render={(props) => {
+                    <Route exact={true} path={'/users'} render={(props) => {
                         console.log(props)
-                        return <Users/>;
+                        return <Users {...props}/>
                     }}/>
+                    <Route exact={true} path={'/users/:id'} render={
+                        (props) => {
+                            let {match: {params: {id}}} = props
+                            console.log(id);
+                            return <UserDetailsComponent userID={id}/>
+                        }
+                    }/>
 
-                    <Route path={'/posts'} render={() => <h1>post</h1>}/>
+
+                    <Route exact={true} path={'/posts'} render={() => <PostsComponent/>}/>
+
+
+
+
                 </Switch>
             </div>
         </Router>
