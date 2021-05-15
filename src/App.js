@@ -4,7 +4,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    Redirect
 } from "react-router-dom";
 import UserDetailsComponent from "./components/user-details/UserDetailsComponent";
 import PostsComponent from "./components/posts/PostsComponent";
@@ -16,11 +17,17 @@ function App() {
             <div>
                 <div><Link to={'users'}>to users</Link></div>
                 <div><Link to={'posts'}>to posts</Link></div>
+
+
                 <Switch>
+
+
                     <Route exact={true} path={'/users'} render={(props) => {
                         console.log(props)
                         return <Users {...props}/>
                     }}/>
+
+
                     <Route exact={true} path={'/users/:id'} render={
                         (props) => {
                             let {match: {params: {id}}} = props
@@ -30,9 +37,17 @@ function App() {
                     }/>
 
 
-                    <Route exact={true} path={'/posts'} render={() => <PostsComponent/>}/>
+                    <Route exact={true} path={'/posts'} render={({match: {url}}) => <PostsComponent url={url}/>}/>
+                    <Route exact={true} path={'/posts/:id'} render={(props) => {
+                        console.log(props)
+                        return <div>test</div>
+                    }}/>
 
 
+                    <Route path={'/xxx'}>
+                        <Redirect to={'/users'}/>
+
+                    </Route>
 
 
                 </Switch>

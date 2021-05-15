@@ -9,7 +9,11 @@ import {
 export default function User({item, url}) {
     return (
         <div>
-            {item.username} - <Link to={url + '/' + item.id}>user {item.id} details</Link>
+            {item.username} -
+            <ul>
+                <li><Link to={url + '/' + item.id}>user {item.id} details</Link></li>
+                <li><Link to={url + '/' + item.id + '/posts'}>user posts</Link></li>
+            </ul>
         </div>
     );
 }
