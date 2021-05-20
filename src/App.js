@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
+import Inventory from "./components/inventory/Inventory";
+import Characters from "./components/characters/Characters";
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div>
+                <div className={'box-link'}>
+                    <Link to={'/characters'}><h1>characters</h1></Link>
+
+                    <Link to={'/inventory'}><h1>inventory</h1></Link>
+                </div>
+
+                <Switch>
+
+
+                    <Route exact={true} path={'/characters'} render={(props) => {
+                        return <Characters {...props}/>
+                    }}/>
+                    <Route exact={true} path={'/inventory'} render={(props) => {
+                        return <Inventory {...props}/>
+                    }}/>
+
+
+                </Switch>
+
+            </div>
+        </Router>
+    );
 }
 
 export default App;
