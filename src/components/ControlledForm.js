@@ -1,16 +1,32 @@
-import {useEffect, useState} from "react";
+import {useEffect, useReducer} from "react";
+
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'SET_USERS':
+            return {...state, users: action.payload};
+        case 'SET_USER':
+            return {...state, user: action.payload};
+        case 'SET_USER_ID':
+            return {...state, userId: action.payload};
+        default:
+            return state;
+    }
+
+};
+
 
 export default function ControlledForm() {
 
-    let [users, setUsers] = useState([]);
-    let [user, setUser] = useState(null);
-    let [userId, setUserId] = useState(0);
+
+    let [state, dispatch] = useReducer(reducer, {users: [], user: null, userId: 0});
+    let {users, user, userId} = state;
 
     useEffect(() => {
         fetch('http://jsonplaceholder.typicode.com/users')
             .then(value => value.json())
             .then(value => {
-                setUsers([...value]);
+                dispatch({type: 'SET_USERS', payload: value});
             });
     }, []);
 
@@ -20,7 +36,7 @@ export default function ControlledForm() {
             fetch('http://jsonplaceholder.typicode.com/users/' + userId)
                 .then(value => value.json())
                 .then(value => {
-                    setUser({...value});
+                    dispatch({type: 'SET_USER', payload: value});
                 });
         }
     }, [userId]);
@@ -33,7 +49,7 @@ export default function ControlledForm() {
 
 
     function onSelect(e) {
-        setUserId(e.target.value)
+        dispatch({type: 'SET_USER_ID', payload: e.target.value});
     }
 
     return (
@@ -49,7 +65,7 @@ export default function ControlledForm() {
 
             </form>
 
-          {user && <div>{JSON.stringify(user)}</div>}
+            {user && <div>{JSON.stringify(user)}</div>}
 
         </div>
     );
